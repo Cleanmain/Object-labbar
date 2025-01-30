@@ -16,6 +16,7 @@ public abstract class Car implements Movable{
         North, East, South, West;
     }
 
+
     public Car(Color color, int nrDoors, double enginePower, String modelName) {
         this.color = color;
         this.nrDoors = nrDoors;
@@ -56,10 +57,10 @@ public abstract class Car implements Movable{
     protected void setCurrentSpeed(double currentSpeed){
         this.currentSpeed = currentSpeed;
     }
-
     public abstract double speedFactor();
     public abstract void incrementSpeed(double amount);
     public abstract void decrementSpeed(double amount);
+
 
     @Override
     public void move() {
@@ -103,12 +104,25 @@ public abstract class Car implements Movable{
         return "(" + x + ", " + y + ")";
     }
 
+    public Direction getDirection(){ // For Tests
+        return direction;
+    }
+
+    @Override
+    public void gas(double amount) {
+        if (amount < 0 || amount > 1) {
+            System.out.println("Can only take values in the interval 0,1");
+        }
+        incrementSpeed(amount);
+    }
+
+    @Override
+    public void brake(double amount) {
+        if (amount < 0 || amount > 1) {
+            System.out.println("Can only take values in the interval 0,1");
+        }
+        decrementSpeed(amount);
+    }
+
+
 }
-// Båda bilar Saab och volvo är tydligt "relaterade" med Bilar som innebär att ärv är perfect
-// Om interface hade vi behövt implementera delad logic, Behöver inte duplicera kod Och det var ett krav med labben
-//Alltså ärv är det rätta valet.
-
-//När det kommer till synlighet så Behöver Car classen vara abstract, Man ska inte kunna göra ett object av Car, bara med
-//Hjälp av classen,
-
-

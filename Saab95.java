@@ -11,11 +11,11 @@ public class Saab95 extends Car{
 
 
     public void setTurboOn(){
-	    turboOn = true;
+        turboOn = true;
     }
 
     public void setTurboOff(){
-	    turboOn = false;
+        turboOn = false;
     }
 
     @Override
@@ -27,21 +27,13 @@ public class Saab95 extends Car{
 
     @Override
     public void incrementSpeed(double amount) {
-        setCurrentSpeed(getCurrentSpeed() + speedFactor() * amount);
+        double newSpeed = getCurrentSpeed() + speedFactor() * amount;
+        setCurrentSpeed(Math.min(newSpeed, getEnginePower())); // Ensure speed ≤ enginePower
     }
 
     @Override
-    public void decrementSpeed(double amount){
-        setCurrentSpeed(getCurrentSpeed() - speedFactor() * amount);
-    }
-    
-    // TODO fix this method according to lab pm
-    public void gas(double amount){
-        incrementSpeed(amount);
-    }
-
-    // TODO fix this method according to lab pm
-    public void brake(double amount){
-        decrementSpeed(amount);
+    public void decrementSpeed(double amount) {
+        double newSpeed = getCurrentSpeed() - speedFactor() * amount;
+        setCurrentSpeed(Math.max(newSpeed, 0)); // Ensure speed ≥ 0
     }
 }
