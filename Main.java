@@ -10,24 +10,20 @@ public class Main {
         System.out.println("Initial speed: " + saab.getCurrentSpeed());
 
         saab.gas(0.5);
-        System.out.println("After gas(0.5): " + saab.getCurrentSpeed());
+        System.out.println("After gas: " + saab.getCurrentSpeed());
 
         saab.brake(0.3);
-        System.out.println("After brake(0.3): " + saab.getCurrentSpeed());
+        System.out.println("After brake: " + saab.getCurrentSpeed());
 
-        // Try braking too much
         saab.brake(1);
-        System.out.println("After brake(1): " + saab.getCurrentSpeed());
+        System.out.println("After brake: " + saab.getCurrentSpeed());
 
-        // Try exceeding max speed
         saab.setCurrentSpeed(198);
         saab.gas(1);
         saab.gas(1);
         saab.gas(1);
         System.out.println("After excessive gas: " + saab.getCurrentSpeed());
-        saab.gas(1);
-        saab.gas(1);
-        saab.gas(1);
+        saab.gas(1.6);
 
 
 

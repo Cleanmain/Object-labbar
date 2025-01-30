@@ -54,7 +54,7 @@ public abstract class Car implements Movable{
     public void setColor(Color clr){
         color = clr;
     }
-    protected void setCurrentSpeed(double currentSpeed){
+    public void setCurrentSpeed(double currentSpeed){
         this.currentSpeed = currentSpeed;
     }
     public abstract double speedFactor();

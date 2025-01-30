@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Saab95 extends Car{
 
-    private boolean turboOn; // Encapsulate because there is no direct access from outside
+    private boolean turboOn;
 
     public Saab95(Color color, int nrDoors, double enginePower, String modelName){
         super(color,nrDoors,enginePower,modelName);
@@ -28,12 +28,12 @@ public class Saab95 extends Car{
     @Override
     public void incrementSpeed(double amount) {
         double newSpeed = getCurrentSpeed() + speedFactor() * amount;
-        setCurrentSpeed(Math.min(newSpeed, getEnginePower())); // Ensure speed ≤ enginePower
+        setCurrentSpeed(Math.min(newSpeed, getEnginePower()));
     }
 
     @Override
     public void decrementSpeed(double amount) {
         double newSpeed = getCurrentSpeed() - speedFactor() * amount;
-        setCurrentSpeed(Math.max(newSpeed, 0)); // Ensure speed ≥ 0
+        setCurrentSpeed(Math.max(newSpeed, 0));
     }
 }

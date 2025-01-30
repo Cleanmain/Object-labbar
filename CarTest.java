@@ -1,7 +1,6 @@
-import org.junit.jupiter.api.Test;
 import java.awt.Color;
 import java.net.NoRouteToHostException;
-
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
@@ -13,7 +12,7 @@ class CarTest {
     }
 
     @Test
-    void Compass(){
+    void compass(){
         Saab95 saab = new Saab95(Color.red, 2, 125,"Saab95");
 
         saab.turnLeft();
@@ -30,5 +29,13 @@ class CarTest {
         saab.move();
         assertEquals("(0.0, 150.0)", saab.getPosition());
     }
+
+    @Test
+    public void gasRange() {
+        Car saab = new Saab95(Color.RED, 2, 200, "Saab95");
+        saab.gas(0.5);
+        assertTrue(saab.getCurrentSpeed() > 0);
+    }
+
 
 }
