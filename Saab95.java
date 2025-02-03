@@ -1,7 +1,8 @@
 import java.awt.*;
 
-public class Saab95 extends Car{
+public class Saab95 extends Vehicle{
 
+    public final static double length = 4.70;
     private boolean turboOn;
 
     public Saab95(Color color, int nrDoors, double enginePower, String modelName){
@@ -18,6 +19,10 @@ public class Saab95 extends Car{
         turboOn = false;
     }
 
+    public double getLength(){
+        return length;
+    }
+
     @Override
     public double speedFactor(){
         double turbo = 1;
@@ -25,15 +30,4 @@ public class Saab95 extends Car{
         return getEnginePower() * 0.01 * turbo;
     }
 
-    @Override
-    public void incrementSpeed(double amount) {
-        double newSpeed = getCurrentSpeed() + speedFactor() * amount;
-        setCurrentSpeed(Math.min(newSpeed, getEnginePower()));
-    }
-
-    @Override
-    public void decrementSpeed(double amount) {
-        double newSpeed = getCurrentSpeed() - speedFactor() * amount;
-        setCurrentSpeed(Math.max(newSpeed, 0));
-    }
 }

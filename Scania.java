@@ -1,58 +1,48 @@
 import java.awt.*;
 
-public class Scania extends Car {
+public class Scania extends TruckBase {
 
-    double flakAngle;
+    private double flakAngle;
+    private static final double length = 14;
 
     public Scania(Color color, int nrDoors, double enginePower, String modelName) {
         super(color, nrDoors, enginePower, modelName);
         this.flakAngle = 0.0;
     }
 
-    public boolean canMove() {
-        if (this.flakAngle == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean canMoveFlakAngle() {
-        if (this.getCurrentSpeed() == 0) {
-            return true;
-        }
-        return false;
-    }
 
     public double getFlakAngle() {
         return this.flakAngle;
     }
 
-    public void setFlakAngle(double angleAmount) {
+    @Override
+    public boolean canMove() {
+        return flakAngle == 0; //
+    }
+
+    public void setFlakAngle(double angleAmount) { //Kanske inte behövs
         this.flakAngle = angleAmount;
     }
 
     public void increaseFlakAngle() {
-        if (canMoveFlakAngle() && this.flakAngle <= 70) {
-            this.flakAngle += 5;
-            setFlakAngle(Math.min(70, this.flakAngle));
+        if (this.canAdjustPlatform()) {
+            this.flakAngle = Math.min(70,this.flakAngle + 5);
         }
 
     }
     public void decreaseFlakAngle(){
-        if (canMoveFlakAngle() && this.flakAngle >= 0){
-            this.flakAngle -=5;
-            setFlakAngle(Math.max(0, this.flakAngle));
+        if (canAdjustPlatform()){
+            this.flakAngle = Math.max(0,this.flakAngle - 5);
         }
     }
-
-
     @Override
-    public void gas(double amount) {
-        double oldSpeed = getCurrentSpeed();
-        if (0 <= amount && 1 >= amount) {
-            if (canMove()) {
-                incrementSpeed(oldSpeed);
-            }
-        }
+    public double speedFactor(){
+        return getEnginePower() * 0.01;
     }
+
+    public double getLength(){
+        return length;
+    }
+
+
 }

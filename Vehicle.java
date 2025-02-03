@@ -1,13 +1,12 @@
 import java.awt.*;
 
-public abstract class Car implements Movable{
+public abstract class Vehicle implements Movable{
 
     private Color color;
     private int nrDoors;
     private double currentSpeed;
     private double enginePower;
     private String modelName;
-
     private double x;
     private double y;
     private Direction direction;
@@ -17,7 +16,7 @@ public abstract class Car implements Movable{
     }
 
 
-    public Car(Color color, int nrDoors, double enginePower, String modelName) {
+    public Vehicle(Color color, int nrDoors, double enginePower, String modelName) {
         this.color = color;
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
@@ -58,8 +57,19 @@ public abstract class Car implements Movable{
         this.currentSpeed = currentSpeed;
     }
     public abstract double speedFactor();
-    public abstract void incrementSpeed(double amount);
-    public abstract void decrementSpeed(double amount);
+
+    public abstract double getLength();
+
+
+    public void incrementSpeed(double amount) {
+        double newSpeed = getCurrentSpeed() + speedFactor() * amount;
+        setCurrentSpeed(newSpeed);
+    }
+
+    public void decrementSpeed(double amount) {
+        double newSpeed = getCurrentSpeed() - speedFactor() * amount;
+        setCurrentSpeed(newSpeed);
+    }
 
 
     @Override
