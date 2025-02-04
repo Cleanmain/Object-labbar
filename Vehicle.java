@@ -1,3 +1,4 @@
+import javax.swing.text.Position;
 import java.awt.*;
 
 public abstract class Vehicle implements Movable{
@@ -7,8 +8,8 @@ public abstract class Vehicle implements Movable{
     private double currentSpeed;
     private double enginePower;
     private String modelName;
-    private double x;
-    private double y;
+    public double x;
+    public double y;
     private Direction direction;
 
     public enum Direction{     //"Låser" ner vad vi kan skriva som direction
@@ -110,9 +111,11 @@ public abstract class Vehicle implements Movable{
         }
     }
 
-    public String getPosition() {
+    public String getPositionString() {
         return "(" + x + ", " + y + ")";
     }
+
+
 
     public Direction getDirection(){ // For Tests
         return direction;

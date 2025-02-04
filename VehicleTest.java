@@ -27,7 +27,7 @@ class VehicleTest {
         Saab95 saab = new Saab95(Color.red, 4, 135, "Saab95");
         saab.setCurrentSpeed(150);
         saab.move();
-        assertEquals("(0.0, 150.0)", saab.getPosition());
+        assertEquals("(0.0, 150.0)", saab.getPositionString());
     }
 
     @Test

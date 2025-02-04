@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Saab95 extends Vehicle{
 
-    public final static double length = 4.70;
+    public final static double length = 5.60;
     private boolean turboOn;
 
     public Saab95(Color color, int nrDoors, double enginePower, String modelName){
