@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
@@ -7,6 +8,8 @@ public class Main {
         Saab95 testsaab = new Saab95(Color.red,4,125,"Saab95");
         Volvo240 volvo = new Volvo240(Color.black,4,100,"Volvo240");
         CarCarrier carcarry = new CarCarrier(Color.black,2,130,"Beast");
+        Workshop volvoWork = new Workshop(Arrays.asList(CarModel.Volvo240),3);
+
 
 
         System.out.println("Initial speed: " + saab.getCurrentSpeed());
@@ -44,6 +47,14 @@ public class Main {
         System.out.println(carcarry.getPositionString());
         System.out.println(testsaab.getPositionString());
         carcarry.unloadVehicle();
+
+        volvoWork.addCar(CarModel.Volvo240);
+        volvoWork.addCar(CarModel.Saab95);
+
+
+
+
+
 
 
 

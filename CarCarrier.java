@@ -49,6 +49,10 @@ public class CarCarrier extends TruckBase{
         return false;
     }
 
+    public Stack<Vehicle> getVehicleStack() {
+        return vehicleStack;
+    }
+
     public double getLength(){
         return length;
     }
@@ -61,11 +65,15 @@ public class CarCarrier extends TruckBase{
 
     @Override
     public void move(){
-        super.move();
-        for (Vehicle car : vehicleStack){
-            car.x = this.x;
-            car.y = this.y;
+        if (rampUp){
+            super.move();
+            for (Vehicle car : vehicleStack) {
+                car.x = this.x;
+                car.y = this.y;
+            }
         }
+        System.out.println("Must have ramp up to drive!");
+
     }
 
 }
