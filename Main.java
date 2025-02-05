@@ -7,8 +7,11 @@ public class Main {
         Saab95 saab = new Saab95(Color.red,2,200,"Saab95");
         Saab95 testsaab = new Saab95(Color.red,4,125,"Saab95");
         Volvo240 volvo = new Volvo240(Color.black,4,100,"Volvo240");
+        Volvo240 testvolvo = new Volvo240(Color.black,4,100,"Volvo240");
         CarCarrier carcarry = new CarCarrier(Color.black,2,130,"Beast");
-        Workshop volvoWork = new Workshop(Arrays.asList(CarModel.Volvo240),3);
+        Scania scania = new Scania(Color.blue, 4,190,"Scania2001");
+        Workshop<Volvo240> volvoWork = new Workshop<>(3);
+        Workshop<Vehicle> allWork = new Workshop<>(4);
 
 
 
@@ -48,8 +51,17 @@ public class Main {
         System.out.println(testsaab.getPositionString());
         carcarry.unloadVehicle();
 
-        volvoWork.addCar(CarModel.Volvo240);
-        volvoWork.addCar(CarModel.Saab95);
+        volvoWork.addVehicle(volvo) ;
+        volvoWork.addVehicle(testvolvo);
+        //volvoWork.addVehicle(saab);
+
+        allWork.addVehicle(volvo);
+        allWork.addVehicle(carcarry);
+        allWork.addVehicle(scania);
+        System.out.println(allWork.getInventory());
+
+
+        System.out.println(volvoWork.getInventory());
 
 
 
