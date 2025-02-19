@@ -17,7 +17,7 @@ public class CarCarrier extends TruckBase{
     }
 
     public void setRampDown(){
-        if (this.getCurrentSpeed() == 0){
+        if (canAdjustPlatform()){
             rampUp = false;
         }
     }
@@ -32,8 +32,9 @@ public class CarCarrier extends TruckBase{
 
 
     public boolean loadVehicle(Vehicle carToLoad){
-        if (carToLoad.getLength() < 6 && !rampUp && vehicleStack.size() < 6 && carInRange(carToLoad)){
+        if (carToLoad.getLength() < 6 && !rampUp && vehicleStack.size() < 6 && carInRange(carToLoad) && !isloaded){
             vehicleStack.push(carToLoad);
+            carToLoad.isloaded = true;
             return true;
         }
         System.out.println("Vehicle cant be loaded");
@@ -43,6 +44,7 @@ public class CarCarrier extends TruckBase{
     public boolean unloadVehicle(){
         if (!rampUp) {
             vehicleStack.pop();
+
             return true;
         }
         System.out.println("Could not unload, Ramp needs to be down");
@@ -76,4 +78,4 @@ public class CarCarrier extends TruckBase{
 
     }
 
-}
+}//Isloaded boolean for Vehicle

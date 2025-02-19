@@ -8,6 +8,7 @@ public class Saab95 extends Vehicle{
     public Saab95(Color color, int nrDoors, double enginePower, String modelName){
         super(color,nrDoors,enginePower,modelName);
         this.turboOn = false;
+
     }
 
 

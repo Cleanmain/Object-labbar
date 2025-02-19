@@ -22,4 +22,17 @@ class Workshop <T extends Vehicle>{
         return false;
     }
 
+    public boolean removeVehicle(T Vehicle){
+        if (inventory.contains(Vehicle)) {
+            inventory.remove(Vehicle);
+            return true;
+        }
+        System.out.println("Vehicle is not in inventory");
+        return false;
+    }
+
+    public int getCapacity(){
+        return capacity;
+    }
+
 }

@@ -11,8 +11,10 @@ public abstract class Vehicle implements Movable{
     public double x;
     public double y;
     private Direction direction;
+    public boolean isloaded;
 
-    public enum Direction{     //"Låser" ner vad vi kan skriva som direction
+
+    public enum Direction{     //"Låser" ner vad vi kan skriva som direction: samt kan vara private men vill ha test
         North, East, South, West;
     }
 
@@ -26,6 +28,7 @@ public abstract class Vehicle implements Movable{
         this.x = 0;
         this.y = 0;
         this.direction = Direction.North;    //Börjar mot norr
+        this.isloaded = false;
 
     }
 
@@ -35,10 +38,10 @@ public abstract class Vehicle implements Movable{
     public int getNrDoors(){
         return this.nrDoors;
     }
-    public double getCurrentSpeed(){
+    protected double getCurrentSpeed(){
         return this.currentSpeed;
     }
-    public double getEnginePower(){
+    protected double getEnginePower(){
         return this.enginePower;
     }
     public String getModelName(){
@@ -51,10 +54,10 @@ public abstract class Vehicle implements Movable{
     public void startEngine(){
         this.currentSpeed = 0.1;
     }
-    public void setColor(Color clr){
+    protected void setColor(Color clr){
         color = clr;
     }
-    public void setCurrentSpeed(double currentSpeed){
+    protected void setCurrentSpeed(double currentSpeed){
         this.currentSpeed = currentSpeed;
     }
     public abstract double speedFactor();
@@ -62,7 +65,7 @@ public abstract class Vehicle implements Movable{
     public abstract double getLength();
 
 
-    public void incrementSpeed(double amount) {
+    protected void incrementSpeed(double amount) {
         double newSpeed = getCurrentSpeed() + speedFactor() * amount;
         setCurrentSpeed(newSpeed);
     }
@@ -111,13 +114,13 @@ public abstract class Vehicle implements Movable{
         }
     }
 
-    public String getPositionString() {
+    protected String getPositionString() {
         return "(" + x + ", " + y + ")";
     }
 
 
 
-    public Direction getDirection(){ // For Tests
+    protected Direction getDirection(){ // For Tests
         return direction;
     }
 

@@ -115,5 +115,17 @@ class VehicleTest {
 
         assertEquals(carry.getPositionString(), volvo.getPositionString());
     }
+    @Test
+    void RemovingAndAddingToWorkshop(){
+        Workshop<Vehicle> allWork = new Workshop<>(4);
+        var volvo = new Volvo240(Color.black,4,100,"Volvo240");
+        var saab = new Saab95(Color.BLUE, 2, 200, "Saab95");
+
+        allWork.addVehicle(volvo);
+        allWork.addVehicle(saab);
+        allWork.removeVehicle(saab);
+        assertTrue(allWork.getCapacity() >= allWork.getInventory().size());
+        assertTrue(allWork.getInventory().contains(volvo));
+    }
 
 }
