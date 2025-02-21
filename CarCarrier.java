@@ -32,9 +32,9 @@ public class CarCarrier extends TruckBase{
 
 
     public boolean loadVehicle(Vehicle carToLoad){
-        if (carToLoad.getLength() < 6 && !rampUp && vehicleStack.size() < 6 && carInRange(carToLoad) && !isloaded){
+        if (carToLoad.getLength() < 6 && !rampUp && vehicleStack.size() < 6 && carInRange(carToLoad) && !getIsLoaded()){
             vehicleStack.push(carToLoad);
-            carToLoad.isloaded = true;
+            carToLoad.setLoaded();
             return true;
         }
         System.out.println("Vehicle cant be loaded");
@@ -78,4 +78,4 @@ public class CarCarrier extends TruckBase{
 
     }
 
-}//Isloaded boolean for Vehicle
+}

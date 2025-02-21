@@ -17,7 +17,7 @@ public abstract class TruckBase extends Vehicle{
 
     @Override
     public void gas(double amount) {
-        if (this.canMove()) {
+        if (this.canMove() && !getIsLoaded()) {
             super.gas(amount);
         }
     }
