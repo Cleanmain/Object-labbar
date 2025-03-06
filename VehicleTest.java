@@ -22,12 +22,13 @@ class VehicleTest {
         for(int i = 0; i < 4; i++){
             saab.turnRight();
         }
-        assertTrue(saab.getDirection() == Vehicle.Direction.North);
+        assertTrue(saab.getDirection() == MotorVehicle.Direction.North);
     }
 
     @Test
     void moveInRightDirection(){
         Saab95 saab = new Saab95(Color.red, 4, 135, "Saab95");
+        saab.startEngine();
         saab.setCurrentSpeed(150);
         saab.move();
         assertEquals("(0.0, 150.0)", saab.getPositionString());
@@ -35,7 +36,8 @@ class VehicleTest {
 
     @Test
     void gasRange() {
-        Vehicle saab = new Saab95(Color.RED, 2, 200, "Saab95");
+        MotorVehicle saab = new Saab95(Color.RED, 2, 200, "Saab95");
+        saab.startEngine();
         saab.gas(0.5);
         assertTrue(saab.getCurrentSpeed() > 0);
     }
@@ -55,12 +57,6 @@ class VehicleTest {
         assertEquals(Color.RED, saab.getColor());
     }
 
-    @Test
-    void engineStartWorks(){
-        var volvo = new Volvo240(Color.black,4,100,"Volvo240");
-        volvo.startEngine();
-        assertTrue(volvo.getCurrentSpeed() > 0);
-    }
 
     @Test
     void canNotMoveWithFlakRaised(){
@@ -117,7 +113,7 @@ class VehicleTest {
     }
     @Test
     void RemovingAndAddingToWorkshop(){
-        Workshop<Vehicle> allWork = new Workshop<>(4);
+        Workshop<MotorVehicle> allWork = new Workshop<>(4);
         var volvo = new Volvo240(Color.black,4,100,"Volvo240");
         var saab = new Saab95(Color.BLUE, 2, 200, "Saab95");
 

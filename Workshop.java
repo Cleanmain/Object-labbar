@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-class Workshop <T extends Vehicle>{
+class Workshop <T extends MotorVehicle>{
     private final ArrayList<T> inventory;
     private final int capacity;
     private boolean isFixed;
@@ -14,17 +14,20 @@ class Workshop <T extends Vehicle>{
         return inventory;
     }
 
-    public boolean addVehicle(T Vehicle){
+    public boolean addVehicle(T MotorVehicle){
         if (inventory.size() < capacity){
-            inventory.add(Vehicle);
+            inventory.add(MotorVehicle);
+            MotorVehicle.stopEngine();
+            MotorVehicle.setLoaded();
+
             return true;
         }
         return false;
     }
 
-    public boolean removeVehicle(T Vehicle){
-        if (inventory.contains(Vehicle)) {
-            inventory.remove(Vehicle);
+    public boolean removeVehicle(T MotorVehicle){
+        if (inventory.contains(MotorVehicle)) {
+            inventory.remove(MotorVehicle);
             return true;
         }
         System.out.println("Vehicle is not in inventory");

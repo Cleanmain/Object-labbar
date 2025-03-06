@@ -5,7 +5,7 @@ public class CarCarrier extends TruckBase{
 
     public final static double length = 24.90;
     private boolean rampUp;
-    private Stack<Vehicle> vehicleStack = new Stack<>();
+    private Stack<MotorVehicle> vehicleStack = new Stack<>();
 
     CarCarrier(Color color, int nrDoors, double enginePower, String modelName){
         super(color,nrDoors,enginePower,modelName);
@@ -22,7 +22,7 @@ public class CarCarrier extends TruckBase{
         }
     }
 
-    public boolean carInRange(Vehicle carToLoad){
+    public boolean carInRange(MotorVehicle carToLoad){
         double deltaX = (carToLoad.x - this.x);
         double deltaY = (carToLoad.y - this.y);
 
@@ -31,7 +31,7 @@ public class CarCarrier extends TruckBase{
     }
 
 
-    public boolean loadVehicle(Vehicle carToLoad){
+    public boolean loadVehicle(MotorVehicle carToLoad){
         if (carToLoad.getLength() < 6 && !rampUp && vehicleStack.size() < 6 && carInRange(carToLoad) && !getIsLoaded()){
             vehicleStack.push(carToLoad);
             carToLoad.setLoaded();
@@ -51,7 +51,7 @@ public class CarCarrier extends TruckBase{
         return false;
     }
 
-    public Stack<Vehicle> getVehicleStack() {
+    public Stack<MotorVehicle> getVehicleStack() {
         return vehicleStack;
     }
 
@@ -69,7 +69,7 @@ public class CarCarrier extends TruckBase{
     public void move(){
         if (rampUp){
             super.move();
-            for (Vehicle car : vehicleStack) {
+            for (MotorVehicle car : vehicleStack) {
                 car.x = this.x;
                 car.y = this.y;
             }

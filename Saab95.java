@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Saab95 extends Vehicle{
+public class Saab95 extends MotorVehicle{
 
     public final static double length = 5.60;
     private boolean turboOn;

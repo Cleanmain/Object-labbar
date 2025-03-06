@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public abstract class TruckBase extends Vehicle{
+public abstract class TruckBase extends MotorVehicle{
 
 
     public TruckBase(Color color, int nrDoors, double enginePower, String modelName) {

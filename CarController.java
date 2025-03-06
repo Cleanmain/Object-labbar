@@ -10,30 +10,40 @@ import java.util.ArrayList;
  * modifying the model state and the updating the view.
  */
 
-public class CarController {
-    // member fields:
-
-    // The delay (ms) corresponds to 20 updates a sec (hz)
+public class CarController implements ICarController{
     private final int delay = 50;
-    // The timer is started with a listener (see below) that executes the statements
-    // each step between delays.
     private Timer timer = new Timer(delay, new TimerListener());
 
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
-    // A list of cars, modify if needed
-    ArrayList<Vehicle> cars = new ArrayList<>();
+    ArrayList<MotorVehicle> cars = new ArrayList<>();
+    VehicleTracker tracker;
 
-    //methods:
+
+
+
 
     public static void main(String[] args) {
         // Instance of this class
         CarController cc = new CarController();
+        cc.tracker = new VehicleTracker(cc.cars);
+
+
 
         cc.cars.add(new Volvo240(Color.red,4,125,"Volvo240"));
+        cc.cars.add(new Saab95(Color.red,3,120,"saabtest"));
+        cc.cars.add(new Scania(Color.BLACK,4,100,"Scania"));
+
+        int startX = 0;
+        for (MotorVehicle car : cc.cars) {
+            car.x = startX;  // ✅ Assign each car a unique X position in memory
+            car.y = 0;       // Keep Y the same
+            startX += 100;   // Move the next car 100 pixels to the right
+        }
 
         // Start a new view and send a reference of self
-        cc.frame = new CarView("CarSim 1.0", cc);
+        cc.frame = new CarView("CarSim 1.0", cc,cc.getVehicleTracker());
+
 
         // Start the timer
         cc.timer.start();
@@ -44,79 +54,74 @@ public class CarController {
      * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (Vehicle car : cars) {
-                car.move();
-                if (car.x > 700 || car.y > 490 || car.x < 0 || car.y < 0) { //ifall går utanför rutan
-                    car.turnLeft();
-                    car.turnLeft();
-                    car.move();
-                }
-                int x = (int) Math.round(car.x);
-                int y = (int) Math.round(car.y);
-                frame.drawPanel.moveit(car, x, y);
-                // repaint() calls the paintComponent method of the panel
-                frame.drawPanel.repaint();
-            }
+            tracker.updatePositions();
+            frame.drawPanel.repaint();
+            
         }
     }
 
-    // Calls the gas method for each car once
-    void gas(int amount) {
+    public VehicleTracker getVehicleTracker() {
+        return this.tracker; // Assuming you have a `tracker` field in `CarController`
+    }
+
+
+    @Override
+    public void gas(int amount) {
         double gas = ((double) amount) / 100;
-        for (Vehicle car : cars
-        ) {
-            car.gas(gas);
-        }
+        for (MotorVehicle car : cars) car.gas(gas);
     }
-    void brake(int amount) {
+
+    @Override
+    public void brake(int amount) {
         double brake = ((double) amount) / 100;
-        for (Vehicle car : cars) {
-            car.brake(brake);
-        }
-    }void startEngine(){
-        for (Vehicle car : cars){
-            car.startEngine();
-        }
-    }void stopEngine(){
-        for (Vehicle car : cars){
-            car.stopEngine();
+        for (MotorVehicle car : cars) car.brake(brake);
+    }
+
+    @Override
+    public void startEngine() {
+        for (MotorVehicle car : cars) car.startEngine();
+    }
+
+    @Override
+    public void stopEngine() {
+        for (MotorVehicle car : cars) car.stopEngine();
+    }
+
+    @Override
+    public void turnLeft() {
+        for (MotorVehicle car : cars) car.turnLeft();
+    }
+
+    @Override
+    public void turnRight() {
+        for (MotorVehicle car : cars) car.turnRight();
+    }
+
+    @Override
+    public void turboOn() {
+        for (MotorVehicle car : cars) {
+            if (car instanceof Saab95) ((Saab95) car).setTurboOn();
         }
     }
-    void stopCars(){
-        for (Vehicle car : cars){
-            car.setCurrentSpeed(0);
+
+    @Override
+    public void turboOff() {
+        for (MotorVehicle car : cars) {
+            if (car instanceof Saab95) ((Saab95) car).setTurboOff();
         }
-    }void turnLeft(){
-        for (Vehicle car : cars){
-            car.turnLeft();
+    }
+
+    @Override
+    public void increaseAngle() {
+        for (MotorVehicle car : cars) {
+            if (car instanceof Scania) ((Scania) car).increaseFlakAngle();
         }
-    }void turnRight(){
-        for (Vehicle car : cars){
-            car.turnRight();
-        }
-    }void turboOn() {
-        for (Vehicle car : cars) {
-            if (car instanceof Saab95) {
-                ((Saab95) car).setTurboOn();
-            }
-        }
-    }void turboOff() {
-        for (Vehicle car : cars) {
-            if (car instanceof Saab95) {
-                ((Saab95)car).setTurboOff();
-            }
-        }
-    }void increaseAngle(){
-        for (Vehicle car : cars){
-            if (car instanceof  Scania){
-                ((Scania)car).increaseFlakAngle();
-            }
-        }
-    }void decreaseAngle(){
-        for (Vehicle car : cars){
-            if (car instanceof Scania){
-                ((Scania)car).decreaseFlakAngle();
-            }
+    }
+
+    @Override
+    public void decreaseAngle() {
+        for (MotorVehicle car : cars) {
+            if (car instanceof Scania) ((Scania) car).decreaseFlakAngle();
         }
     }
 }

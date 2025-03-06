@@ -11,7 +11,7 @@ public class Main {
         CarCarrier carcarry = new CarCarrier(Color.black,2,130,"Beast");
         Scania scania = new Scania(Color.blue, 4,190,"Scania2001");
         Workshop<Volvo240> volvoWork = new Workshop<>(3);
-        Workshop<Vehicle> allWork = new Workshop<>(4);
+        Workshop<MotorVehicle> allWork = new Workshop<>(4);
 
 
 
