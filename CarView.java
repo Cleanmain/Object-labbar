@@ -44,6 +44,9 @@ public class CarView extends JFrame{
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
 
+    JButton removeCarButton = new JButton("Remove car");
+    JButton addCarButton = new JButton("Add car");
+
     // Constructor
     public CarView(String framename, ICarController cc,VehicleTracker tracker) {
         this.carC = cc;
@@ -81,7 +84,7 @@ public class CarView extends JFrame{
 
         this.add(gasPanel);
 
-        controlPanel.setLayout(new GridLayout(2,4));
+        controlPanel.setLayout(new GridLayout(2,5));
 
         controlPanel.add(gasButton, 0);
         controlPanel.add(brakeButton, 1);
@@ -91,6 +94,8 @@ public class CarView extends JFrame{
         controlPanel.add(turboOffButton, 5);
         controlPanel.add(liftBedButton, 6);
         controlPanel.add(lowerBedButton, 7);
+        controlPanel.add(addCarButton, 8);
+        controlPanel.add(removeCarButton, 9);
 
         controlPanel.setPreferredSize(new Dimension((X/2)+4, 200));
         this.add(controlPanel);

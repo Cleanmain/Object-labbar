@@ -30,9 +30,12 @@ public class CarController implements ICarController{
 
 
 
-        cc.cars.add(new Volvo240(Color.red,4,125,"Volvo240"));
-        cc.cars.add(new Saab95(Color.red,3,120,"saabtest"));
-        cc.cars.add(new Scania(Color.BLACK,4,100,"Scania"));
+        //cc.cars.add(new Volvo240(Color.red,4,125,"Volvo240"));
+        //cc.cars.add(new Saab95(Color.red,3,120,"saabtest"));
+        //cc.cars.add(new Scania(Color.BLACK,4,100,"Scania"));
+        cc.cars.add(AddingCar.CreateCar("volvo"));
+        cc.cars.add(AddingCar.CreateCar("Saab"));
+        cc.cars.add(AddingCar.CreateCar("scania"));
 
         int startX = 0;
         for (MotorVehicle car : cc.cars) {
@@ -56,7 +59,7 @@ public class CarController implements ICarController{
         public void actionPerformed(ActionEvent e) {
             tracker.updatePositions();
             frame.drawPanel.repaint();
-            
+
         }
     }
 
@@ -122,6 +125,15 @@ public class CarController implements ICarController{
     public void decreaseAngle() {
         for (MotorVehicle car : cars) {
             if (car instanceof Scania) ((Scania) car).decreaseFlakAngle();
+        }
+    }
+    @Override
+    public void addCar() {
+        cc.cars.add(AddingCar.CreateCar(AddingCar.chooseRandomCar()));
+    }@Override
+    public void removeCar() {
+        for (MotorVehicle car : cars) {
+
         }
     }
 }

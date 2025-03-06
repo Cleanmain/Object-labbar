@@ -9,4 +9,6 @@ public interface ICarController {
     void turboOff();
     void increaseAngle();
     void decreaseAngle();
+    void addCar();
+    void removeCar();
 }
