@@ -13,16 +13,18 @@ public class AddingCar {
         };
     }
 
-    public static String chooseRandomCar(){
+    public static String chooseRandomCar(int size){
         ArrayList<String> stringcar = new ArrayList<>();
         stringcar.add("volvo");
         stringcar.add("saab");
         stringcar.add("scania");
 
         Random rand = new Random();
-        int pointer = rand.nextInt(2);
+        int pointer = rand.nextInt(size);
 
         return stringcar.get(pointer);
 
     }
+
+    //public static
 }

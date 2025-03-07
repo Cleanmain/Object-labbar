@@ -13,6 +13,7 @@ public abstract class MotorVehicle extends MovableVehicle implements Motor{
         return this.engineOn;}
     public void stopEngine(){
         this.engineOn = false;
+        this.setCurrentSpeed(0);
     }
     public void startEngine(){
         this.engineOn = true;

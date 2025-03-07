@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
+
 
 /*
  * This class represents the Controller part in the MVC pattern.
@@ -87,7 +89,8 @@ public class CarController implements ICarController{
 
     @Override
     public void stopEngine() {
-        for (MotorVehicle car : cars) car.stopEngine();
+        for (MotorVehicle car : cars)
+            car.stopEngine();
     }
 
     @Override
@@ -129,11 +132,27 @@ public class CarController implements ICarController{
     }
     @Override
     public void addCar() {
-        cc.cars.add(AddingCar.CreateCar(AddingCar.chooseRandomCar()));
+        MotorVehicle tempCar = AddingCar.CreateCar(AddingCar.chooseRandomCar(3));
+        if (cars.size() < 8) {
+            int startX = cars.size() * 100;
+            tempCar.x += startX;
+            tempCar.y = 0;
+
+            this.cars.add(tempCar);
+        }
+
     }@Override
     public void removeCar() {
-        for (MotorVehicle car : cars) {
+        //this.cars.remove(AddingCar.CreateCar(AddingCar.chooseRandomCar(cars.size())));
+        int size = cars.size();
+        if (size != 0) {
+            Random rand = new Random();
+            int pointer = rand.nextInt(size);
 
+            this.cars.remove(pointer);
+        }
+        else{
+            System.out.println("Cant remove more Cars");
         }
     }
 }
