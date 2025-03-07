@@ -41,9 +41,9 @@ public class CarController implements ICarController{
 
         int startX = 0;
         for (MotorVehicle car : cc.cars) {
-            car.x = startX;  // ✅ Assign each car a unique X position in memory
-            car.y = 0;       // Keep Y the same
-            startX += 100;   // Move the next car 100 pixels to the right
+            car.x = startX;
+            car.y = 0;
+            startX += 100;
         }
 
         // Start a new view and send a reference of self

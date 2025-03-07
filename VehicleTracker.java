@@ -28,7 +28,6 @@ public class VehicleTracker {
     private void volvoInShop(MotorVehicle car) {
         if (car instanceof Volvo240 && car.x > 250 && car.x < 350 && car.y > 250 && car.y < 350) {
             car.setLoaded();
-            // Add any logic you want to execute when a Volvo enters the shop
         }
     }
 

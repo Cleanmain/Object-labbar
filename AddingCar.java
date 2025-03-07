@@ -25,6 +25,4 @@ public class AddingCar {
         return stringcar.get(pointer);
 
     }
-
-    //public static
 }
